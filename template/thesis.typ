@@ -34,9 +34,11 @@
 /// - keywords (de: str, eng: str): keywords belonging to this thesis
 #let thesis(
   title: (de: "", eng: ""),
+  thesis-type: "",
   author: "",
   prof: "",
   support: "",
+  company: (show-company: true, name: ""),
   date: datetime.today(),
   abstract: (de: "", eng: ""),
   keywords: (de: "", eng: ""),
@@ -123,15 +125,23 @@
   //show heading: set text(font: "Atkinson Hyperlegible")
 
   // -- Content --
+  
+  // define if company text is shown
+  let company-text(company-name) = if company.show-company {
+    text(
+      "Die Arbeit ist im Rahmen einer Tätigkeit bei der Firma " + 
+      company-name + 
+      " entstanden."
+    ) 
+  }
 
   // --- Title Page ---
   align(center)[
     #set par(leading: 0.65em, spacing: 0.85em) // Line Height
 
     #image("imis-logo.png")
-    #text(fill: color.hsl(0deg, 0%, 50%))[
-      Direktor: Univ.-Prof. Dr.-Ing. Nicole Jochems Dipl.-Inform.
-    ] #v(3em, weak: true)
+
+    #v(3em, weak: true)
 
     #par(
       text(
@@ -150,7 +160,7 @@
       ),
     ) #v(3.5em, weak: true)
 
-    *Masterarbeit* #v(1.5em, weak: true)
+    *#thesis-type* #v(1.5em, weak: true)
 
     im Rahmen des Studiengangs \ *Medieninformatik* \ der Universität zu Lübeck
 
@@ -172,7 +182,12 @@
 
     *#support*
 
+    #v(2em, weak: true)
+
+    #company-text(company.name)
+
     #v(3em, weak: true)
+    
 
     Lübeck, #date.display("[day padding:none]. [month repr:long] [year]")
   ]
@@ -286,42 +301,6 @@
     outline(depth: 3)
   }
 
-
-  // Glossar and acronyms
-  [
-    // Change heading style only for this block
-    #set page(numbering: "i", footer: none)
-    #set heading(numbering: none, outlined: true)
-    #show heading.where(level: 1): it => [
-      #if one-sided {
-        pagebreak()
-      } else {
-        pagebreak(to: "odd")
-      }
-      #v(1.5em)
-      #it
-      #v(1.5em)
-    ]
-    #show heading.where(level: 2): it => [
-      #v(1.5em)
-      #it
-      #v(0.75em)
-    ]
-
-    // --- Table of Acronyms ---
-    #if (acronyms.len() > 0) {
-      acrostiche.print-index(
-        title: [Abkürzungen],
-        delimiter: "",
-        outlined: true,
-        sorted: "up",
-        row-gutter: 1em,
-      )
-    }
-
-    // --- Glossar ---
-    #glossy.glossary(title: "Glossar", sort: true)
-  ]
 
   // Reset page counter for main part
   counter(page).update(0)
@@ -509,6 +488,39 @@
 
   include "/software.typ"
 
+  // Glossar and acronyms
+  [
+    // Change heading style only for this block
+    #show heading.where(level: 1): it => [
+      #if one-sided {
+        pagebreak()
+      } else {
+        pagebreak(to: "odd")
+      }
+      #v(1.5em)
+      #it
+      #v(1.5em)
+    ]
+    #show heading.where(level: 2): it => [
+      #v(1.5em)
+      #it
+      #v(0.75em)
+    ]
+
+    // --- Table of Acronyms ---
+    #if (acronyms.len() > 0) {
+      acrostiche.print-index(
+        title: [Abkürzungen],
+        delimiter: "",
+        outlined: true,
+        sorted: "up",
+        row-gutter: 1em,
+      )
+    }
+
+    // --- Glossar ---
+    #glossy.glossary(title: "Glossar", sort: true)
+  ]
 
   // -- Addendum --
   show figure: it => i-figured.show-figure(it, numbering: "A.1")

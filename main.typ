@@ -2,15 +2,20 @@
 #import "abstract.typ": *
 
 #let title = (
-  de: "Titel einer Qualifikationsarbeit am IMIS der Universität zu Lübeck",
-  eng: "Title of a thesis at the IMIS of the University of Lübeck",
+  de: "Titel der Arbeit",
+  eng: "Titel der Arbeit in Englisch",
 )
 
 #show: thesis.with(
   title: title,
-  author: "Author B.Sc.",
-  prof: "Univ.-Prof. Maxim Mustermensch",
-  support: "Bente Betreuer:in",
+  thesis-type: "Bachelorarbeit/Masterarbeit",
+  author: "Vorname Nachname",
+  prof: "Titel Name Erstgutachter:in",
+  support: "Titel Name Betreuer:in",
+  company: (
+    show-company: true,
+    name: "Firma Muster GmbH"
+  ),
   print: true,
   one-sided: false,
   abstract: (abstract),
@@ -21,3 +26,7 @@
 )
 
 #include "chapter/introduction.typ"
+#include "chapter/relatedwork.typ"
+#include "chapter/furtherchapters.typ"
+#include "chapter/conclusion.typ"
+#include "chapter/tutorial.typ"
