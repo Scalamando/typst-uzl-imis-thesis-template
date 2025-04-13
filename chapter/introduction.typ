@@ -133,12 +133,34 @@ Verschiedene Funktionen des glossarium packages werden in kruzform über die Uti
 @thumbstick:long:pl
 
 === Zitation
-Zitationen (prose)
+Zitationen eines Papers (prose)
 
 ```typ
-#tc(<abeele2021>)
+#tc(<r-abeele2021>)
 ```
 #tc(<r-abeele2021>)
+
+
+Zitation mehrerer Paper der gleichen Autor:in (prose)
+```typ
+#tcc((<r-endsley_situation_1988>, <r-endsley_systematic_2021>))
+```
+#tcc((<r-endsley_situation_1988>, <r-endsley_systematic_2021>))
+
+
+Zitation mehrerer Paper gleicher und nicht gleicher Autor:innen (normal)
+```typ
+#mc((
+  <r-abeele2021>, 
+  (<r-endsley_situation_1988>, <r-endsley_systematic_2021>)
+))
+```
+#mc((
+  <r-abeele2021>, 
+  (<r-endsley_situation_1988>, <r-endsley_systematic_2021>)
+))
+
+
 
 === Text notes
 
