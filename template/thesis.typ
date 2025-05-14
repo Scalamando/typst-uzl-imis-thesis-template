@@ -487,7 +487,7 @@
     "../bibliography/references.bib",
     prefix: "r-",
     full: false,
-    style: "american-psychological-association",
+    style: "apa",
   )
 
   context {
@@ -515,7 +515,7 @@
     prefix: "n-",
     title: "Normen",
     full: false,
-    style: "american-psychological-association",
+    style: "apa",
   )
 
   // -- Software --

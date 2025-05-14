@@ -147,6 +147,40 @@
   cite(label, form: "prose", supplement: supplement)
 }
 
+#let tcc(labels, supplement: none)= {
+  let author = cite(labels.at(0), form: "author", supplement: none)
+  let years = labels
+    .map(label => cite(label, form: "year", supplement: none))
+    .join(", ")
+
+  author + " (" + years + ")"
+}
+
+#let mc(labels, supplement: none) = {
+  // create array of author and year arrays for input labels
+  let citations = labels.map(label => {
+    // check for single or combined reference
+    if type(label) != array {
+      // return author and year from label
+      let author = cite(label, form: "author", supplement: none)
+      let year = cite(label, form: "year", supplement: none)
+      return (author, year)
+    } else {
+      // return author and years from label array
+      let author = cite(label.at(0), form: "author", supplement: none)
+      let years = label
+        .map(sublabel => cite(sublabel, form: "year", supplement: none))
+        .join(", ")
+      return (author, years)
+    }
+  })
+  .map(tuple => tuple.join(", ")) // connect author and year(s) per array
+
+  // show citation
+  "(" + citations.join("; ") + ")"
+}
+
+
 // Text Status Tools (WIP, ToDo)
 
 
