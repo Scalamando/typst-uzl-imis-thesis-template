@@ -1,4 +1,5 @@
 #import "/template/utils.typ": *
+#import "@preview/alexandria:0.2.0": *
 
 = Das Template
 
@@ -29,6 +30,7 @@ Im Folgenden ist die Struktur des Projektes aufgeführt.
 |- foreword.typ         Vorbemerkung falls benötigt
 |- glossar.typ          Definition von Begriffen
 |- software.typ         Verwendete Software (nicht immer notwendig)
+
 ```
 
 == Referenzieren <chap::intro:ref>
@@ -94,6 +96,12 @@ rendert zu: _Im Vergleich zu SAGAT @r-endsley_situation_1988 ..._
 ```
 rendert zu: _ #tc(<r-abeele2021>) diskutieren, dass ..._
 
+*3. Collapsed citation:*\
+```typ
+#citegroup(prefix: "r-")[@r-endsley_situation_1988 @r-endsley_systematic_2021 @r-Nielsen1990 @r-abeele2021]
+```
+rendert zu: _Irgendeine Aussage #citegroup(prefix: "r-")[@r-endsley_situation_1988 @r-endsley_systematic_2021 @r-Nielsen1990 @r-abeele2021] ..._
+
 *Wichtig:* Anders als bei der Standard Zitierweise muss in diesem Template für das 
 Zitieren von Normen das Präfix _n-_ vor die Quelle gesetzt werden. Für alle 
 anderen Quellen muss das Präfix _r-_ genutzt werden.
@@ -124,7 +132,8 @@ Verschiedene Funktionen des acrotastic packages werden in kruzform über die Uti
 #acf("VR")
 
 === Glossar
-Verschiedene Funktionen des glossarium packages werden in kruzform über die Utils bereitgestellt.
+Verschiedene Funktionen des glossarium packages werden in Kurzform über Utils 
+bereitgestellt.
 
 ```typ
 @thumbstick:long:pl
@@ -132,12 +141,13 @@ Verschiedene Funktionen des glossarium packages werden in kruzform über die Uti
 @thumbstick:long:pl
 
 === Zitation
-Zitationen (prose)
+Zitationen eines Papers (prose)
 
 ```typ
-#tc(<abeele2021>)
+#tc(<r-abeele2021>)
 ```
-#tc(<abeele2021>)
+#tc(<r-abeele2021>)
+
 
 === Text notes
 
@@ -194,4 +204,3 @@ Inline Needs Citation label
 ```
 
 #done[]
-

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 = Einleitung
 
 Die Einleitung erklärt den Kontext der eigenen Arbeit und führt zur Fragestellung

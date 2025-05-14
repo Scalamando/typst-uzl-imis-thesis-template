@@ -10,7 +10,7 @@
 #import "@preview/i-figured:0.2.4"
 #import "@preview/icu-datetime:0.1.2": fmt-date
 #import "@preview/outrageous:0.4.0"
-#import "@preview/alexandria:0.1.3": *
+#import "@preview/alexandria:0.2.0": *
 #import "/acronyms.typ": acronyms
 #import "/glossar.typ": glossar-list
 #import "internal.typ"
