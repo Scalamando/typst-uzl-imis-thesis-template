@@ -142,10 +142,13 @@
 }
 
 
-// Text Citation Utils
+// Citation Utils
+//
+// Text Citation
 #let tc(label, supplement: none) = {
   cite(label, form: "prose", supplement: supplement)
 }
+
 
 // Text Status Tools (WIP, ToDo)
 
