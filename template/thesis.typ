@@ -10,6 +10,7 @@
 #import "@preview/i-figured:0.2.4"
 #import "@preview/icu-datetime:0.1.2": fmt-date
 #import "@preview/outrageous:0.4.0"
+#import "@preview/alexandria:0.2.0": *
 #import "/acronyms.typ": acronyms
 #import "/glossar.typ": glossar-list
 #import "internal.typ"
@@ -58,6 +59,11 @@
       bottom: margin-bottom,
     ),
   )
+
+  // --- alexandria bib Package Setup ---
+  show: alexandria(prefix: "r-", read: path => read(path))
+  show: alexandria(prefix: "n-", read: path => read(path))
+
 
   // --- glossy Package Setup ---
   show: glossy.init-glossary.with(glossar-list)
@@ -477,11 +483,39 @@
   ]
 
   // -- Bibliography --
-  heading([Literaturverzeichnis])
-  bibliography(
-    "/literature.bib",
-    title: none,
-    style: "american-psychological-association",
+  load-bibliography(
+    "../bibliography/references.bib",
+    prefix: "r-",
+    full: false,
+    style: "apa",
+  )
+
+  context {
+    let (references, ..rest) = get-bibliography("r-")
+
+    render-bibliography(
+      title: [Literatur],
+      (
+        references: references.filter(r => r.details.type != "misc"),
+        ..rest,
+      ),
+    )
+
+    render-bibliography(
+      title: [Online-Quellen],
+      (
+        references: references.filter(r => r.details.type == "misc"),
+        ..rest,
+      ),
+    )
+  }
+
+  bibliographyx(
+    "../bibliography/normen.bib",
+    prefix: "n-",
+    title: "Normen",
+    full: false,
+    style: "apa",
   )
 
   // -- Software --
