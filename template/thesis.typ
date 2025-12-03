@@ -6,7 +6,7 @@
 #import "@preview/codly-languages:0.1.8": *
 #import "@preview/drafting:0.2.0"
 #import "@preview/glossy:0.7.0"
-#import "@preview/hydra:0.4.0" // Maybe later, doesn't work very well atm
+#import "@preview/hydra:0.6.2" // Maybe later, doesn't work very well atm
 #import "@preview/i-figured:0.2.4"
 #import "@preview/icu-datetime:0.1.2": fmt-date
 #import "@preview/outrageous:0.4.0"
