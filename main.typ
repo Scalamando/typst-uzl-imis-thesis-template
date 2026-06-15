@@ -14,7 +14,7 @@
   support: "Titel Name Betreuer:in",
   company: (
     show-company: true,
-    name: "Firma Muster GmbH"
+    name: "Firma Muster GmbH",
   ),
   print: true,
   one-sided: false,
