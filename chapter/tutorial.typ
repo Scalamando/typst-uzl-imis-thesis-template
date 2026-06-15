@@ -1,130 +1,170 @@
 #import "/template/utils.typ": *
-#import "@preview/alexandria:0.2.0": *
 
 = Das Template
 
-== Struktur
+Die Struktur des Projektes wird in @lst:project-structure aufgeführt. In den
+folgenden Abschnitten werden verschiedene Aspekte des Templates erläutert.
 
-Im Folgenden ist die Struktur des Projektes aufgeführt.
+#show figure: set block(breakable: true)
+#figure(
+  ```txt
+  ┣ addendum/            Anhang
+  ┃  ┗ addendum.typ
+  ┣ bibliography/        Bibliografien
+  ┃  ┣ references.bib     Alle Quellen bis auf Normen
+  ┃  ┗ normen.bib         Normen werden hier definiert
+  ┣ chapter/             Verzeichnis für alle Kapitel
+  ┃  ┗ ...
+  ┣ template/            Template-Dateien
+  ┃  ┣ imis-logo.png      IMIS Logo
+  ┃  ┣ internal.typ       Interne Hilfsfunktionen
+  ┃  ┣ thesis.typ         Template des Dokuments
+  ┃  ┗ utils.typ          Sammlung nützlicher Funktionen
+  ┣ abstract.typ         DE und ENG Variante des Abstracts
+  ┣ acronym.typ          Definition von Abkürzungen
+  ┣ foreword.typ         Vorbemerkung (falls benötigt)
+  ┣ glossary.typ          Definition von Begriffen
+  ┣ main.typ             Hauptdatei mit Metadaten
+  ┗ software.typ         Verwendete Software (falls benötigt)
+  ```,
+  caption: [Verzeichnisstruktur des Projektes],
+  placement: none,
+) <project-structure>
 
-```txt
-../
-|- addendum/            Anhang
-|   |- addendum.typ
-|
-|- bibliography/
-|   |- references.bib   alle Quellen bis aus Normen
-|   |- normen.bib       Normen werden hier definiert
-|
-|- chapter/             Directory für alle Kapitel
-|   |- introduction.typ
-|
-|- template/
-|   |- imis-logo.png
-|   |- internal.typ
-|   |- thesis.typ       Template des Dokuments
-|   |- utils.typ        Sammlung nützlicher Funktionen
-|
-|- acronym.typ          Definition von Abkürzungen
-|- abstract.typ         DE und ENG Variante des abstracts
-|- foreword.typ         Vorbemerkung falls benötigt
-|- glossar.typ          Definition von Begriffen
-|- software.typ         Verwendete Software (nicht immer notwendig)
+== Referenzieren <chap:intro-ref>
 
-```
+In Typst können sämtliche Elemente im Text referenziert werden, solange ihnen
+ein Label#footnote[https://typst.app/docs/reference/foundations/label/]
+zugeordnet ist. Abbildungen, Tabellen und Code-Listings werden hierbei für
+gewöhnlich in _figure_
+Elemente#footnote[https://typst.app/docs/reference/model/figure/] eingebettet.
+Eine kurze Übersicht, wie diese Funktionalitäten in Typst genutzt werden
+können, wird im Folgenden präsentiert.
 
-== Referenzieren <chap::intro:ref>
+=== Abschnitte
 
-Abschnitte referenzieren @chap::intro:ref
+Um Abschnitte wie bspw. @chap:intro-ref zu referenzieren, muss der
+Abschnittsüberschrift ein Label nach dem Schema `<chap:name-des-labels>` zugewiesen werden (vgl. @lst:chap-ref).
 
-```typ
-@chap::intro:ref
-```
-#line(length: 100%)
+#figure(
+  ```typ
+  == Referenzieren <chap:intro-ref>
 
-Abbildung referenzieren @fig:figure-a
+  Um Abschnitte wie bspw. @chap:intro-ref zu referenzieren ...
+  ```,
+  caption: [Referenzieren von Abschnitten],
+  placement: none,
+) <chap-ref>
 
-```typ
-@fig:figure-a
-```
+=== Abbildungen, Tabellen, Listings
+
+Ähnlich zu Abschnitten können Abbildung wie bspw. @fig:imis-logo über ein Label
+referenziert werden. Im Gegensatz zu Abschnitten wird das Label für Abbildungen
+automatisch mit `fig:` geprefixt, was bei der Referenzierung anderswo beachtet
+werden muss (vgl. @lst:fig-ref).
+
+#figure(
+  ```typ
+  In @fig:imis-logo wird das Logo des IMIS gezeigt.
+
+  #figure(
+    image("../template/imis-logo.png", width: 80%),
+    caption: [Das offizielle Logo des Institut für ...],
+  ) <imis-logo>
+  ```,
+  caption: [Referenzieren von Abbildungen],
+  placement: none,
+) <fig-ref>
+
+In @fig:imis-logo wird das Logo des IMIS gezeigt.
 
 #figure(
   image("../template/imis-logo.png", width: 80%),
-  caption: [
-    A step in the molecular testing
-    pipeline of our lab.
-  ],
-) <figure-a>
-#line(length: 100%)
-Anhang referenzieren
+  caption: [Das offizielle Logo des Institut für Interaktive Menschzentrierte Systeme (IMIS).],
+) <imis-logo>
+
+=== Anhänge
+
+Anhänge werden wir Abschnitte zitiert, wobei hier die Label aus der `addendum.typ` verwendet werden müssen.
 
 ```typ
-@anhang-x
+@anhang-a
 ```
 
-@anhang-x
+@anhang-a
 
 == Literatur
+
 Das Literaturverzeichnis sollte dem aktuellsten APA Standard entsprechen,
 solange mit der Betreuer:in nichts anderes vereinbart wurde. In Typst können
-Quellen über .bib Dateien eingebunden werden. Im Ordner _\/bibliography_
-können neue Einträge in den Dateien _references.bib_
-(alle Quellen bis auf Normen) und _normen.bib_ (nur Normen) hinzugefügt werden.
-Das Literaturverzeichnis wird automatisch erstellt, sobald die Quellen im Text
+Quellen über .bib Dateien eingebunden werden, welche in diesem Template im
+Ordner _\/bibliography_ abgelegt werden müssen (vgl. @lst:project-structure).
+Neue Einträge können in den Dateien _references.bib_ (alle Quellen bis auf
+Normen) und _normen.bib_ (nur Normen) hinzugefügt werden. Für die Verwaltung
+der BibLaTeX-Datein wird ein Quellenverwaltungstool wie
+Zotero#footnote[https://www.zotero.org/] stark empfohlen. Das
+Literaturverzeichnis wird automatisch erstellt, sobald die Quellen im Text
 verwendet werden.
 
-Typst selbst unterstützt aktuell keine Unterteilung des
-Literaturverzeichnisses in mehrere Bereiche, um beispielsweise Online-Quellen
-gesondert aufzuführen. Hierzu wird das Package
-Alexandria#footnote[https://github.com/SillyFreak/typst-alexandria] verwendet.
-Wichtig zu beachten ist, dass Normen in _normen.typ_ definiert werden müssen
-und alle anderen Quellen in _references.typ_ damit sie im entsprechenden Bereich
-auftauchen. Zusätzlich muss für Online-Quellen der korrekte Typ (\@misc)
-genutzt werden. Für das Zitieren im Text ist darauf zu achten die Präfixe
-_n-_ für Normen und _r-_ für alle anderen Quellen zu nutzen.
+Typst unterstützt die Unterteilung des Literaturverzeichnisses in mehrere
+Bereiche, um beispielsweise Online-Quellen gesondert aufzuführen. Wichtig zu
+beachten ist, dass Normen in _normen.bib_ definiert werden müssen und alle
+anderen Quellen in _references.bib_ damit sie im entsprechenden Bereich
+auftauchen.
 
-Im Text gibt es folgende Möglichkeiten Quellen zu zitieren:\
-*1. Parenthical citation:*\
+Im Text gibt es folgende Möglichkeiten, Quellen zu zitieren:
+
+=== Parenthical citation
+
 ```typ
-Im Vergleich zu SAGAT @r-endsley_situation_1988 ...
+Im Vergleich zu SAGAT @endsley_situation_1988 ...
 ```
-rendert zu: _Im Vergleich zu SAGAT @r-endsley_situation_1988 ..._
+_Im Vergleich zu SAGAT @endsley_situation_1988 ..._
 
-*2. Narrative citation:*\
+=== Narrative citation
+
 ```typ
-#tc(<r-abeele2021>) diskutieren, dass ...
+#tc(<abeele2021>) diskutieren, dass ...
 ```
-rendert zu: _ #tc(<r-abeele2021>) diskutieren, dass ..._
+_ #tc(<abeele2021>) diskutieren, dass ..._
 
-*3. Collapsed citation:*\
+=== Collapsed citation
+
 ```typ
-#citegroup(prefix: "r-")[@r-endsley_situation_1988 @r-endsley_systematic_2021 @r-Nielsen1990 @r-abeele2021]
+Irgendeine Aussage @endsley_situation_1988 @endsley_systematic_2021 @Nielsen1990 @abeele2021
 ```
-rendert zu: _Irgendeine Aussage #citegroup(prefix: "r-")[@r-endsley_situation_1988 @r-endsley_systematic_2021 @r-Nielsen1990 @r-abeele2021] ..._
-
-*Wichtig:* Anders als bei der Standard Zitierweise muss in diesem Template für das
-Zitieren von Normen das Präfix _n-_ vor die Quelle gesetzt werden. Für alle
-anderen Quellen muss das Präfix _r-_ genutzt werden.
+_Irgendeine Aussage @endsley_situation_1988 @endsley_systematic_2021 @Nielsen1990 @abeele2021 _
 
 Je nach zitierter Dokumentsorte, sieht die Referenz im Literaturverzeichnis
 anders aus:
 
-- Beispiel für einen Konferenzband @r-Nielsen1990
-- Beispiel für einen Journal-Artikel @r-hollan2000
-- Beispiel für ein Buch @r-zobel2014writing
-- Beispiel für eine Norm @n-ISO9241
-- Beispiel für eine Webseite @r-webimis
+- Beispiel für einen Konferenzband @Nielsen1990
+- Beispiel für einen Journal-Artikel @hollan2000
+- Beispiel für ein Buch @zobel2014writing
+- Beispiel für eine Norm @ISO9241
+- Beispiel für eine Webseite @webimis
 
-== utils
+== Utils
 
-Die Utils sind eine Ansammlung an nützlichen funktionen. Diese müssen in jedem File in dem sie verwendet werde importiert werden (siehe Zeile 1 in _/chapter/introduction.typ_)
+Die Utilities (kurz Utils) sind eine Ansammlung an nützlichen Funktionen. Sie
+müssen am Anfang jeder Datei, in der sie verwendet werde sollen, importiert werden
+(vgl. @lst:utils-import)
 
-```typ
-#import "/template/utils.typ": *
-```
+#figure(
+  ```typ
+  #import "/template/utils.typ": *
+  ```,
+  caption: [Import der Utils Funktionen],
+  placement: none,
+) <utils-import>
 
-=== Abk.
-Verschiedene Funktionen des acrotastic packages werden in kruzform über die Utils bereitgestellt.
+Um einen Überblick über die verfügbaren Hilfsfunktionen zu gewinnen, wird ein
+Blick in die _template/utils.typ_ empfohlen. Im Folgenden werden einige
+Funktionen exemplarisch vorgestellt.
+
+=== Abkürzungen
+
+Verschiedene Funktionen des acrotastic packages werden in Kurzform über die Utils bereitgestellt.
 
 ```typ
 #acf("VR")
@@ -132,6 +172,7 @@ Verschiedene Funktionen des acrotastic packages werden in kruzform über die Uti
 #acf("VR")
 
 === Glossar
+
 Verschiedene Funktionen des glossarium packages werden in Kurzform über Utils
 bereitgestellt.
 
@@ -141,13 +182,17 @@ bereitgestellt.
 @thumbstick:long:pl
 
 === Zitation
+
 Zitationen eines Papers (prose)
 
 ```typ
-#tc(<r-abeele2021>)
+#tc(<abeele2021>)
 ```
-#tc(<r-abeele2021>)
+#tc(<abeele2021>)
 
+=== Randnotizen
+
+#lorem(20)#side-note[Das hier ist auch möglich] #lorem(20)
 
 === Text notes
 

@@ -1,6 +1,6 @@
 #import "template/utils.typ": *
 
-= Software Verzeichnis
+= Softwareverzeichnis
 
 In der Arbeit wurden die folgende Sammlung an Software eingesetzt:
 

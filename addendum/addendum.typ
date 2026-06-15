@@ -2,7 +2,7 @@
 
 = Anhang
 
-== Anhang X <anhang-x>
+== Anhang A <anhang-a>
 
 Der Anhang kann Teile der Arbeit enthalten, die im Hauptteil zu weit führen würden,
 aber trotzdem für manche Leser interessant sein könnten. Das können z. B. die
@@ -11,10 +11,11 @@ trotzdem durchgeführt wurden. Es ist ebenfalls möglich längere Codeabschnitte
 anzuhängen. Jedoch sollte der Anhang kein Ersatz für ein Repository sein und nicht
 einfach den gesamten Code enthalten.
 
-#pagebreak(weak: true)
-
-== Anhang Y <anhang-y>
+== Anhang B <anhang-b>
 
 #lorem(200)
 
-#pagebreak(weak: true)
+== Anhang C <anhang-c>
+
+#lorem(200)
+
