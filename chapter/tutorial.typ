@@ -100,8 +100,9 @@ solange mit der Betreuer:in nichts anderes vereinbart wurde. In Typst können
 Quellen über .bib Dateien eingebunden werden, welche in diesem Template im
 Ordner _\/bibliography_ abgelegt werden müssen (vgl. @lst:project-structure).
 Neue Einträge können in den Dateien _references.bib_ (alle Quellen bis auf
-Normen) und _normen.bib_ (nur Normen) hinzugefügt werden. Für die Verwaltung
-der BibLaTeX-Datein wird ein Quellenverwaltungstool wie
+Normen) und _normen.bib_ (nur Normen) hinzugefügt werden. _Die beiden .bib Dateien werden in dern thesis.typ als Bibliographien geadded. Änderungen an den Dateiennamen oder zusätzliche Bibliograhpien müssen dort hinzugefügt werden._ 
+
+Für die Verwaltung der BibLaTeX-Datein wird ein Quellenverwaltungstool wie
 Zotero#footnote[https://www.zotero.org/] stark empfohlen. Das
 Literaturverzeichnis wird automatisch erstellt, sobald die Quellen im Text
 verwendet werden.
