@@ -122,6 +122,13 @@ Im Vergleich zu SAGAT @endsley_situation_1988 ...
 ```
 _Im Vergleich zu SAGAT @endsley_situation_1988 ..._
 
+==== Multi Citation
+
+```typ
+Mehrere Quellen @endsley_situation_1988 @Nielsen1990 ...
+```
+_Mehrere Quellen @endsley_situation_1988 @Nielsen1990 ..._
+
 === Narrative citation
 
 ```typ
